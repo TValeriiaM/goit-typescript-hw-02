@@ -1,0 +1,34 @@
+.searchHeader {
+    position: fixed;
+    display: flex;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    width: 100%;
+    background-color: #542bdb;
+    box-shadow: 1px 1px 1px 1px #15074f4d;
+}
+
+.searchForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchButton {
+    height: 32px;
+    width: auto;
+    border: none;
+    background-color: #f0f8ff;
+}
+
+.searchInput {
+    height: 32px;
+    width: 340px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: #f0f8ff;
+}
+
