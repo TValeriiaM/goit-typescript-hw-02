@@ -8,17 +8,23 @@ import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import toast from 'react-hot-toast';
 import css from "./App.module.css"
 import ImageModal from '../ImageModal/ImageModal';
+import { Image } from './App.types';
 
 
 export default function App() {
-  const [images, setImages] = useState([]);
-  const [queryImg, setQuery] = useState("");
-  const [currentPage, setPage] = useState(1);
-  const [isLoader, setLoader] = useState(false);
-  const [isError, setError] = useState(false);
-  const [totalPages, setTotalPages] = useState(1)
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalImage, setModalImage] = useState("")
+  const [images, setImages] = useState<Image[]>([]);
+  const [queryImg, setQuery] = useState<string>("");
+  const [currentPage, setPage] = useState<number>(1);
+  const [isLoader, setLoader] = useState<boolean>(false);
+  const [isError, setError] = useState<boolean>(false);
+  const [totalPages, setTotalPages] = useState<number>(1)
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [modalImage, setModalImage] = useState<string>("");
+
+  interface Result {
+    results: [];
+    total_pages: number;
+  }
 
   useEffect(() => {
     if (!queryImg) {
@@ -30,7 +36,7 @@ export default function App() {
         setLoader(true);
         setError(false);
 
-        const { results, total_pages } = await getImage(queryImg, currentPage);
+        const { results, total_pages } = await getImage<Result>(queryImg, currentPage);
       
         setImages((prevState) => [...prevState, ...results]);
         
@@ -48,7 +54,7 @@ export default function App() {
     fetchImages()
   }, [currentPage, queryImg])
 
-    const searchImages = async (word) => {
+    const searchImages = async (word: string) => {
     setImages([]);
     setQuery(word);
     setPage(1);
@@ -59,7 +65,7 @@ export default function App() {
     setPage(currentPage + 1);
    };
   
-   function openModalImage(imageLink) {
+   function openModalImage(imageLink: string) {
      setModalOpen(true);
      setModalImage(imageLink);
   }

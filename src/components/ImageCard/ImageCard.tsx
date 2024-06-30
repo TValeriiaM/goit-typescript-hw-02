@@ -1,6 +1,12 @@
 import css from "./ImageCard.module.css"
+import { Image } from "../App/App.types";
 
-export default function ImageCard({ card, onClick }) {
+interface ImageCardProps {
+    card: Image;
+    onClick: (urls: string, description: string) => void;
+}
+
+export default function ImageCard({ card, onClick }: ImageCardProps) {
     return (
         <img className={css.img}
         src={card.urls.small}
